@@ -17,7 +17,7 @@ const UserModel = sequelize.define('user', {
          }
     },
     address_1:{type:Sequelize.STRING(100),allowNull:false,},
-    address_2:{type:Sequelize.STRING(100),allowNull:false,},
+    address_2:{type:Sequelize.STRING(100),allowNull:true,},
     city:{type:Sequelize.STRING(100),allowNull:false,},
     postal_code:{type:Sequelize.STRING(100),allowNull:false,},
     country:{type:Sequelize.STRING(100),allowNull:false,},

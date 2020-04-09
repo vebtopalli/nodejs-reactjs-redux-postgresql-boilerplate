@@ -30,7 +30,7 @@ routes['routes_static']=[
   },
   {
     path: "/profile/update",
-    public:true,
+    public:false,
     component: UpdateUserComponent,
   },
 ]

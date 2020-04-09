@@ -32,6 +32,7 @@ class LogedInMenuComponent extends Component {
                 <div class="nav-wrapper">
                     <a class="right" onClick={this.logoutMe.bind(this)}>Log out</a>
                     <ul id="nav-mobile" class="left hide-on-med-and-down">
+                        <li><NavLink class="right" to="/profile/update">Profile</NavLink></li>
                         <li><NavLink to="/dashboard/">Dashboard</NavLink></li>
                     </ul>
                 </div>

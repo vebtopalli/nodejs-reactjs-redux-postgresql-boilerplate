@@ -1,16 +1,25 @@
 function userUpdate(user_id,data,res,req,change_password){
     var UserModel=require('./../../../db/models/Models').UserModel;
+
+    if(!data.full_name.value || !data.address_1.value || !data.city.value || !data.postal_code.value || !data.country.value || !data.phone.value){
+        res.status(403).json({
+            "code":'USR_06',
+            "message": "Please Fill Required datas first..",
+        });
+        return false;
+    }
+  
     var update_obj={
-        name:data.name,
-        address_1:data.address_1,
-        address_2:data.address_2,
-        city:data.city,
-        postal_code:data.postal_code,
-        country:data.country,
-        phone:data.phone,
+        name:data.full_name.value,
+        address_1:data.address_1.value,
+        address_2:data.address_2.value,
+        city:data.city.value,
+        postal_code:data.postal_code.value,
+        country:data.country.value,
+        phone:data.phone.value,
     };
     if(change_password){
-        update_obj['password_h']=data.password;
+        update_obj['password_h']=data.password.value;
     }
     UserModel.update(
         update_obj,
@@ -20,6 +29,7 @@ function userUpdate(user_id,data,res,req,change_password){
             }
         }
     ).then((results)=>{
+        console.log(results);
         if(results){
             req.logout();  
             req.session = null;
@@ -52,8 +62,8 @@ module.exports=(req,res,next)=>{
             if(user.social_register){
                 userUpdate(user.id,data,res,req,false);
             }else{
-             if(data.old_password){
-                 if(data.old_password){
+             if(data.old_password.value){
+                 if(data.old_password.value){
                     UserModel.findOne({
                          attributes:[
                            'id',
@@ -71,14 +81,14 @@ module.exports=(req,res,next)=>{
                          });
                        }
                        const bcrypt=require('bcrypt-nodejs');
-                       const compare=bcrypt.compareSync(data.old_password,results.password);
+                       const compare=bcrypt.compareSync(data.old_password.value,results.password);
                        if (!compare) {
                          res.status(403).json({
                              "code":'USR_06',
                              "message": "Old Password is not Correct!",
                          });
                        } else {
-                         if(data.password && data.password.length>5){
+                         if(data.password.value && data.password.value.length>5){
                             userUpdate(user.id,data,res,req,true);
                          }else{
                              res.status(403).json({
