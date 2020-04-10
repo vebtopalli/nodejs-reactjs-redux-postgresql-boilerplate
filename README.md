@@ -1,3 +1,23 @@
+## Project
+
+
+```
+├── Server Side : NodeJS
+
+├── Database : PostgreSQL
+
+├── ORM : Sequelize
+
+├── Client Side : ReactJS+Redux
+
+├── Style : Materializecss
+
+```
+
+### `Project Details`
+
+This Project currently has only the Login/Update Profile Method Completed since it's a boilerplate.
+
 
 ## Available Scripts
 
