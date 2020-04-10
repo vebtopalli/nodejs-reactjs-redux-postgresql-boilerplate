@@ -1,5 +1,5 @@
 {
-  "name": "woocommerce-erp",
+  "name": "nodejs-reactjs-redux-postgresql-boilerplate",
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:3001",
